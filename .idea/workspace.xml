@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9528d896-974b-41b2-b601-0899d42d6ba3" name="Changes" comment="Adding CheckBox Features">
+    <list default="true" id="af0d8e2a-181f-4e95-8f33-3f096b811188" name="Changes" comment="Adding CheckBox Features">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuStudentController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +23,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GithubProjectSettings">
     <option name="branchProtectionPatterns">
@@ -49,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "D:/JAR FX/sql connector/mysql-connector-java-5.1.42-bin.jar",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3770115",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"

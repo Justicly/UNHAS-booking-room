@@ -27,7 +27,6 @@ public class MenuAdminController {
     Connection connection = null;
     PreparedStatement preparedStatement = null ;
     ResultSet resultSet = null ;
-    PesananMahasiswa student = null ;
 
 
     @FXML
@@ -52,14 +51,7 @@ public class MenuAdminController {
     public TableColumn<PesananMahasiswa, String> kolomSelect2;
     private Stage stage;
 
-
-    private boolean update;
     int studentId;
-
-    void setUpdate(boolean b) {
-        this.update = b;
-
-    }
 
     public void initialize(){
         loadData();
@@ -102,10 +94,6 @@ public class MenuAdminController {
                 + "`mulai`=?,"
                 + "`selesai`=?,"
                 + "`status`='"+StatusTolak+"' WHERE id = '" + studentId +"'";
-    }
-
-    private void getQuery() {
-        query = "INSERT INTO `tablebooking`(`NIM`, `kelas`, `tanggal`, `mulai`, `selesai`, `status`) VALUES (?,?,?,?,?,?)";
     }
 
     public void refreshData(){

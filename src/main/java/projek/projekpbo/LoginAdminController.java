@@ -19,7 +19,7 @@ public class LoginAdminController {
     private Label warningLabel;
     private Stage stage;
     private Scene scene;
-    private FXMLLoader fxmlLoader;
+
 
     public void switchToMenuAdmin(ActionEvent event) throws IOException{
         String Password = "123";

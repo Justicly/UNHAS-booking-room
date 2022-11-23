@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
@@ -31,7 +30,6 @@ public class MenuStudentController {
     Connection connection = null;
     PreparedStatement preparedStatement = null ;
     ResultSet resultSet = null ;
-    PesananMahasiswa student = null ;
     String Status = "Menunggu";
 
     public void displayName(String InputNIM, String InputPass){
@@ -64,8 +62,6 @@ public class MenuStudentController {
     ObservableList<String> pilihKelasList = FXCollections.observableArrayList("G01", "101", "202");
 
     private Stage stage;
-    private Scene scene;
-    private FXMLLoader fxmlLoader;
     @FXML
     ChoiceBox<String> pilihKelasBox;
     @FXML
@@ -106,8 +102,6 @@ public class MenuStudentController {
     public void initialize() throws ClassNotFoundException {
         loadData();
         pilihKelasBox.setItems(pilihKelasList);
-        //make sure the property value factory should be exactly same as the e.g getStudentId from your model class
-        //add your data to the table here.
     }
 
     public void refreshData(){

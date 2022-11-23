@@ -11,7 +11,6 @@ import java.io.IOException;
 public class MainMenuController {
     private Stage stage;
     private Scene scene;
-    private FXMLLoader fxmlLoader;
 
     public void switchTologinAdmin(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("loginAdmin.fxml"));
