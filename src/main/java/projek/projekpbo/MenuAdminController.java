@@ -10,17 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.StageStyle;
 
 import java.sql.*;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,12 +28,10 @@ public class MenuAdminController {
     PreparedStatement preparedStatement = null ;
     ResultSet resultSet = null ;
     PesananMahasiswa student = null ;
-    String Status = "Diterima";
+
 
     @FXML
     private TableView<PesananMahasiswa> tableView2;
-    @FXML
-    public TableColumn<PesananMahasiswa, String> kolomID2;
 
     @FXML
     public TableColumn<PesananMahasiswa, String> kolomNIM2;
@@ -57,9 +52,6 @@ public class MenuAdminController {
     public TableColumn<PesananMahasiswa, String> kolomSelect2;
     private Stage stage;
 
-
-    @FXML
-    Label NIMLabel;
 
     private boolean update;
     int studentId;
@@ -195,23 +187,43 @@ public class MenuAdminController {
     private void terimaKelas(ActionEvent event) {
         connection = DbConnect.getConnect();
 
-        student = tableView2.getSelectionModel().getSelectedItem();
-        setTextField(student.getId(), student.getNIM(), student.getKelas(), student.getTanggal(), student.getMulai(), student.getSelesai(), student.getStatus());
+        ObservableList<PesananMahasiswa> dataListTerima = FXCollections.observableArrayList();
+
+        for(PesananMahasiswa bean : pesananMahasiswa)
+        {
+            if(bean.getPilihBaris().isSelected())
+            {
+                dataListTerima.add(bean);
+                setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
+
+            }
+
+        }
         getQueryTerima();
         insert();
         refreshData();
+
     }
 
     @FXML
     private void tolakKelas(ActionEvent event) {
         connection = DbConnect.getConnect();
 
-        student = tableView2.getSelectionModel().getSelectedItem();
-        setTextField(student.getId(), student.getNIM(), student.getKelas(), student.getTanggal(), student.getMulai(), student.getSelesai(), student.getStatus());
+        ObservableList<PesananMahasiswa> dataListTerima = FXCollections.observableArrayList();
+
+        for(PesananMahasiswa bean : pesananMahasiswa)
+        {
+            if(bean.getPilihBaris().isSelected())
+            {
+                dataListTerima.add(bean);
+                setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
+
+            }
+
+        }
         getQueryTolak();
         insert();
         refreshData();
+
     }
-
-
 }
