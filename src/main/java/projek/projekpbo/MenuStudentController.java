@@ -145,7 +145,6 @@ public class MenuStudentController {
     }
 
     // add your data here from any source
-
     public void buttonPesanKelas (ActionEvent event) throws IOException{
         connection = DbConnect.getConnect();
         String tanggal = String.valueOf(tanggalKelas.getValue());

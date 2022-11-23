@@ -172,7 +172,6 @@ public class MenuAdminController {
     private String studentStatus;
 
     void setTextField(int id, String NIM, String kelas, String tanggal, String mulai, String selesai, String status) {
-
         studentId = id;
         studentNIM = NIM;
         studentKelas = kelas;
@@ -180,7 +179,6 @@ public class MenuAdminController {
         studentMulai = mulai;
         studentSelesai = selesai;
         studentStatus = status;
-
     }
 
     @FXML
@@ -195,12 +193,10 @@ public class MenuAdminController {
             {
                 dataListTerima.add(bean);
                 setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
-
+                getQueryTerima();
+                insert();
             }
-
         }
-        getQueryTerima();
-        insert();
         refreshData();
 
     }
@@ -209,21 +205,19 @@ public class MenuAdminController {
     private void tolakKelas(ActionEvent event) {
         connection = DbConnect.getConnect();
 
-        ObservableList<PesananMahasiswa> dataListTerima = FXCollections.observableArrayList();
+        ObservableList<PesananMahasiswa> dataListTolak = FXCollections.observableArrayList();
 
         for(PesananMahasiswa bean : pesananMahasiswa)
         {
             if(bean.getPilihBaris().isSelected())
             {
-                dataListTerima.add(bean);
+                dataListTolak.add(bean);
                 setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
-
+                getQueryTolak();
+                insert();
             }
 
         }
-        getQueryTolak();
-        insert();
         refreshData();
-
     }
 }
