@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projek.projekpbo.LoginStudentController">
+   <children>
+      <TextField fx:id="fieldNIM" layoutX="204.0" layoutY="144.0" prefHeight="25.0" prefWidth="193.0" promptText="Masukkan NIM" />
+      <Label layoutX="204.0" layoutY="127.0" text="NIM" />
+      <Label layoutX="204.0" layoutY="200.0" text="Password" />
+      <Button layoutX="273.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToMenuStudent" text="Submit" />
+      <Label fx:id="warningLabelNIM" layoutX="206.0" layoutY="169.0" textFill="RED" />
+      <Label fx:id="warningLabelNIMPassStud" layoutX="206.0" layoutY="242.0" textFill="RED" />
+      <Label fx:id="warningKesalahan" layoutX="175.0" layoutY="259.0" textFill="RED" />
+      <PasswordField fx:id="fieldPass" layoutX="206.0" layoutY="217.0" prefHeight="25.0" prefWidth="193.0" />
+   </children>
+</AnchorPane>
