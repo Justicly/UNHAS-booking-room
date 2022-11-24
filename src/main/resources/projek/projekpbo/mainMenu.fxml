@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projek.projekpbo.MainMenuController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #D9D9D9;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projek.projekpbo.MainMenuController">
    <children>
-      <Button fx:id="utamaStudent" layoutX="256.0" layoutY="149.0" mnemonicParsing="false" onAction="#switchToDataStudent" prefHeight="25.0" prefWidth="88.0" text="Student" />
-      <Button fx:id="utamaAdmin" layoutX="256.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchTologinAdmin" prefHeight="25.0" prefWidth="88.0" text="Admin" />
+      <AnchorPane layoutX="460.0" layoutY="180.0" prefHeight="360.0" prefWidth="360.0" style="-fx-background-color: #FFFFFF;" />
+      <AnchorPane layoutX="460.0" layoutY="180.0" prefHeight="90.0" prefWidth="360.0" style="-fx-background-color: #D52525;" />
+      <Label layoutX="560.0" layoutY="212.0" text="ROOM BOOKING PORTAL" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="75.75" fitWidth="60.0" x="480.0" y="187.0">
+         <image>
+            <Image url="@../../../../../../../../../Universitas%20Hasanuddin/Teknik%20Informatika/Semester%203/Pemrograman%20Berbasis%20Objek/Gambar/Logo-Resmi-Unhas-1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="utamaAdmin" layoutX="501.0" layoutY="420.0" mnemonicParsing="false" onAction="#switchTologinAdmin" prefHeight="50.0" prefWidth="278.0" style="-fx-background-color: #1890ff;" text="Admin" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="utamaStudent" layoutX="501.0" layoutY="340.0" mnemonicParsing="false" onAction="#switchToDataStudent" prefHeight="50.0" prefWidth="278.0" style="-fx-background-color: #1890FF;" text="Student" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
