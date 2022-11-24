@@ -68,7 +68,7 @@
          </font></Label>
       <ImageView fitHeight="75.75" fitWidth="60.0" layoutX="30.0" layoutY="30.0">
          <image>
-            <Image url="@../../images/Logo-Resmi-Unhas-1.png" />
+            <Image url="@../images/Logo-Resmi-Unhas-1.png" />
          </image>
       </ImageView>
    </children>

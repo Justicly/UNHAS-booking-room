@@ -33,13 +33,14 @@
       </Label>
       <ImageView fitHeight="75.75" fitWidth="60.0" layoutX="480.0" layoutY="187.0">
          <image>
-            <Image url="@../../images/Logo-Resmi-Unhas-1.png" />
+            <Image url="@../images/Logo-Resmi-Unhas-1.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="10.0" layoutY="10.0">
+      <ImageView fx:id="backAdmin" layoutX="10.0" layoutY="10.0">
          <image>
-            <Image url="@../../images/arrow.png" />
+            <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
+      <Button layoutX="5.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchBackMainMenu" opacity="0.0" prefHeight="24.0" prefWidth="34.0" text="Button" />
    </children>
 </AnchorPane>

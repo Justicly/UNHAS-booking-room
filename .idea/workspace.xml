@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af0d8e2a-181f-4e95-8f33-3f096b811188" name="Changes" comment="Adding CheckBox Features">
+    <list default="true" id="af0d8e2a-181f-4e95-8f33-3f096b811188" name="Changes" comment="Clear Warning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuStudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projek/projekpbo/LoginAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projek/projekpbo/LoginAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projek/projekpbo/LoginStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projek/projekpbo/LoginStudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/dataStudent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/dataStudent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/loginAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/loginAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/mainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/mainMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/menuAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/menuAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/menuStudent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/projek/projekpbo/menuStudent.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +29,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GithubProjectSettings">
     <option name="branchProtectionPatterns">
@@ -44,17 +49,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/JAR FX/sql connector/mysql-connector-java-5.1.42-bin.jar",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3770115",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/JAR FX/sql connector/mysql-connector-java-5.1.42-bin.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3770115&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\KULIAH\Teknik Informatika\SEMESTER 3\PEMROGRAMAN BERORIENTASI OBYEK\ProjekPBO\src\main\java\projek\projekpbo" />
@@ -109,7 +114,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9528d896-974b-41b2-b601-0899d42d6ba3" name="Changes" comment="" />
+      <changelist id="af0d8e2a-181f-4e95-8f33-3f096b811188" name="Changes" comment="Clear Warning" />
       <created>1667633144009</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -129,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669207319888</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Clear Warning">
+      <created>1669217645443</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669217645443</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,7 +160,8 @@
       <path value="$PROJECT_DIR$/../../../../" />
     </ignored-roots>
     <MESSAGE value="Adding CheckBox Features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding CheckBox Features" />
+    <MESSAGE value="Clear Warning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clear Warning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

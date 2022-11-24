@@ -42,4 +42,13 @@ public class LoginAdminController {
             warningLabel.setText("Password salah");
         }
     }
+
+    public void switchBackMainMenu(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Room Booking Portal Universitas Hasanuddin");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

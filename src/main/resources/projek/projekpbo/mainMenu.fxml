@@ -18,7 +18,7 @@
       </Label>
       <ImageView fitHeight="75.75" fitWidth="60.0" x="480.0" y="187.0">
          <image>
-            <Image url="@../../../../../../../../../Universitas%20Hasanuddin/Teknik%20Informatika/Semester%203/Pemrograman%20Berbasis%20Objek/Gambar/Logo-Resmi-Unhas-1.png" />
+            <Image url="@../images/Logo-Resmi-Unhas-1.png" />
          </image>
       </ImageView>
       <Button fx:id="utamaAdmin" layoutX="501.0" layoutY="420.0" mnemonicParsing="false" onAction="#switchTologinAdmin" prefHeight="50.0" prefWidth="278.0" style="-fx-background-color: #1890ff;" text="Admin" textFill="WHITE">

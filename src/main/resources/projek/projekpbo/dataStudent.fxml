@@ -48,7 +48,7 @@
       <AnchorPane layoutX="460.0" layoutY="180.0" prefHeight="90.0" prefWidth="360.0" style="-fx-background-color: #d52525;" />
       <ImageView fitHeight="75.75" fitWidth="60.0" x="480.0" y="187.0">
          <image>
-            <Image url="@../../../../../../../../../Universitas%20Hasanuddin/Teknik%20Informatika/Semester%203/Pemrograman%20Berbasis%20Objek/Gambar/Logo-Resmi-Unhas-1.png" />
+            <Image url="@../images/Logo-Resmi-Unhas-1.png" />
          </image>
       </ImageView>
       <Label layoutX="560.0" layoutY="212.0" text="ROOM BOOKING PORTAL" textFill="WHITE">
@@ -56,10 +56,11 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <ImageView layoutX="10.0" layoutY="10.0">
+      <ImageView layoutX="10.0" layoutY="10.0" onMousePressed="#switchBackMainMenu">
          <image>
-            <Image url="@../../images/arrow.png" />
+            <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
+      <Button layoutX="4.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchBackMainMenu" opacity="0.0" prefHeight="30.0" prefWidth="36.0" text="Button" />
    </children>
 </AnchorPane>

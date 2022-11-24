@@ -60,4 +60,13 @@ public class LoginStudentController {
             warningKesalahan.setText("NIM atau Password yang Anda Masukkan Salah");
         }
     }
+
+    public void switchBackMainMenu(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Room Booking Portal Universitas Hasanuddin");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
