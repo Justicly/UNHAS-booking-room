@@ -33,7 +33,7 @@ public class MenuStudentController {
     String Status = "Menunggu";
 
     public void displayName(String InputNIM, String InputPass){
-        if(InputNIM.equals("D121211001")){
+        if(InputNIM.equals("D131211000")){
             namaLabel.setText("Roger Udin");
         }else{
             namaLabel.setText("Slamet Ngawi");
@@ -131,7 +131,7 @@ public class MenuStudentController {
     public void checkData(){
         try {
             pesananMahasiswa.clear();
-            query = "SELECT * FROM `tablebooking` WHERE (kelas ='"+pilihKelasBox.getValue()+"') AND (tanggal= '"+tanggalKelas.getValue()+"') AND (mulai >= '"+fieldMulaiKelas.getText()+":00' AND mulai <= '"+fieldSelesaiKelas.getText()+":00') OR (selesai >= '"+fieldMulaiKelas.getText()+":00' AND selesai <= '"+fieldSelesaiKelas.getText()+":00')";
+            query = "SELECT * FROM `tablebooking` WHERE ((kelas ='"+pilihKelasBox.getValue()+"') AND (tanggal= '"+tanggalKelas.getValue()+"') AND ((mulai >= '"+fieldMulaiKelas.getText()+":00' AND mulai <= '"+fieldSelesaiKelas.getText()+":00') OR (selesai >= '"+fieldMulaiKelas.getText()+":00' AND selesai <= '"+fieldSelesaiKelas.getText()+":00')))";
             //query = "SELECT * FROM `tablebooking` WHERE kelas ='"+pilihKelasBox.getValue()+"' AND tanggal= '"+tanggalKelas.getValue()+"' AND mulai>='"+fieldMulaiKelas.getText()+":00' AND (selesai <= '"+fieldSelesaiKelas.getText()+":00' OR selesai >= '"+fieldSelesaiKelas.getText()+":00')";
             //query = "SELECT * FROM `tablebooking` WHERE (kelas ='"+pilihKelasBox.getValue()+"') AND (tanggal= '"+tanggalKelas.getValue()+"') AND (mulai>='"+fieldMulaiKelas.getText()+":00' AND selesai <= '"+fieldSelesaiKelas.getText()+":00')";
             // A>=12:00 AND (B<=13:00 OR B>=13:00)

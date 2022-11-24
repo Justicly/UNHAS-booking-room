@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af0d8e2a-181f-4e95-8f33-3f096b811188" name="Changes" comment="Adding Feature Checking Class Status">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="af0d8e2a-181f-4e95-8f33-3f096b811188" name="Changes" comment="Fix Bug &quot;Adding Feature Checking Class Status&quot;">
       <change beforePath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projek/projekpbo/MenuStudentController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669295301401</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix Bug &quot;Adding Feature Checking Class Status&quot;">
+      <created>1669303518410</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669303518410</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,7 +177,8 @@
     <MESSAGE value="Clear Warning" />
     <MESSAGE value="Adding &quot;back&quot; features" />
     <MESSAGE value="Adding Feature Checking Class Status" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding Feature Checking Class Status" />
+    <MESSAGE value="Fix Bug &quot;Adding Feature Checking Class Status&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Bug &quot;Adding Feature Checking Class Status&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

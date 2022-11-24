@@ -33,7 +33,7 @@ public class LoginStudentController {
         warningLabelNIM.setText(null);
         warningKesalahan.setText(null);
 
-        String Username = "D121211001";
+        String Username = "D131211000";
         String Password = "123456";
 
         String Username2 = "D121211000";
