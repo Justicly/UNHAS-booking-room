@@ -127,6 +127,29 @@ public class MenuStudentController {
             Logger.getLogger(MenuStudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void checkData(){
+        try {
+            pesananMahasiswa.clear();
+            //query = "SELECT * FROM `tablebooking` WHERE kelas ='"+pilihKelasBox.getValue()+"' AND tanggal= '"+tanggalKelas.getValue()+"' AND mulai BETWEEN '"+fieldMulaiKelas.getText()+":00' AND '"+fieldSelesaiKelas.getText()+":00' AND selesai BETWEEN '"+fieldMulaiKelas.getText()+":00' AND '"+fieldSelesaiKelas.getText()+":00';";
+            query = "SELECT * FROM `tablebooking` WHERE kelas ='"+pilihKelasBox.getValue()+"' AND tanggal= '"+tanggalKelas.getValue()+"' AND mulai>='"+fieldMulaiKelas.getText()+":00' AND (selesai <= '"+fieldSelesaiKelas.getText()+":00' OR selesai >= '"+fieldSelesaiKelas.getText()+":00');";
+            // A>=12:00 AND (B<=13:00 OR B>=13:00)
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("This Class Not Available");
+                alert.showAndWait();
+            }else{
+                getQuery();
+                insert();
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(MenuStudentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void loadData(){
         connection = DbConnect.getConnect();
         refreshData();
@@ -138,12 +161,12 @@ public class MenuStudentController {
         kolomStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
-    // add your data here from any source
     public void buttonPesanKelas (ActionEvent event) throws IOException{
         connection = DbConnect.getConnect();
         String tanggal = String.valueOf(tanggalKelas.getValue());
         String mulai = fieldMulaiKelas.getText();
         String selesai = fieldSelesaiKelas.getText();
+
 
         if (tanggal.isEmpty() || mulai.isEmpty() || selesai.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -152,8 +175,7 @@ public class MenuStudentController {
             alert.showAndWait();
 
         } else {
-            getQuery();
-            insert();
+            checkData();
         }
         refreshData();
     }
