@@ -131,8 +131,9 @@ public class MenuStudentController {
     public void checkData(){
         try {
             pesananMahasiswa.clear();
-            //query = "SELECT * FROM `tablebooking` WHERE kelas ='"+pilihKelasBox.getValue()+"' AND tanggal= '"+tanggalKelas.getValue()+"' AND mulai BETWEEN '"+fieldMulaiKelas.getText()+":00' AND '"+fieldSelesaiKelas.getText()+":00' AND selesai BETWEEN '"+fieldMulaiKelas.getText()+":00' AND '"+fieldSelesaiKelas.getText()+":00';";
-            query = "SELECT * FROM `tablebooking` WHERE kelas ='"+pilihKelasBox.getValue()+"' AND tanggal= '"+tanggalKelas.getValue()+"' AND mulai>='"+fieldMulaiKelas.getText()+":00' AND (selesai <= '"+fieldSelesaiKelas.getText()+":00' OR selesai >= '"+fieldSelesaiKelas.getText()+":00');";
+            query = "SELECT * FROM `tablebooking` WHERE (kelas ='"+pilihKelasBox.getValue()+"') AND (tanggal= '"+tanggalKelas.getValue()+"') AND (mulai >= '"+fieldMulaiKelas.getText()+":00' AND mulai <= '"+fieldSelesaiKelas.getText()+":00') OR (selesai >= '"+fieldMulaiKelas.getText()+":00' AND selesai <= '"+fieldSelesaiKelas.getText()+":00')";
+            //query = "SELECT * FROM `tablebooking` WHERE kelas ='"+pilihKelasBox.getValue()+"' AND tanggal= '"+tanggalKelas.getValue()+"' AND mulai>='"+fieldMulaiKelas.getText()+":00' AND (selesai <= '"+fieldSelesaiKelas.getText()+":00' OR selesai >= '"+fieldSelesaiKelas.getText()+":00')";
+            //query = "SELECT * FROM `tablebooking` WHERE (kelas ='"+pilihKelasBox.getValue()+"') AND (tanggal= '"+tanggalKelas.getValue()+"') AND (mulai>='"+fieldMulaiKelas.getText()+":00' AND selesai <= '"+fieldSelesaiKelas.getText()+":00')";
             // A>=12:00 AND (B<=13:00 OR B>=13:00)
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
@@ -140,7 +141,7 @@ public class MenuStudentController {
             if(resultSet.next()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setContentText("This Class Not Available");
+                alert.setContentText("This Class not available");
                 alert.showAndWait();
             }else{
                 getQuery();
