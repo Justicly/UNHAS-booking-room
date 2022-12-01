@@ -14,12 +14,11 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import java.sql.SQLException;
+
+import javax.swing.*;
+import java.sql.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,12 +32,37 @@ public class MenuStudentController {
     String Status = "Menunggu";
 
     public void displayName(String InputNIM, String InputPass){
-        if(InputNIM.equals("D131211000")){
-            namaLabel.setText("Roger Udin");
-        }else{
-            namaLabel.setText("Slamet Ngawi");
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs;
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/dbbook", "root", "");
+            pst = con.prepareStatement("select * from users where nim=?");
+
+            pst.setString(1, InputNIM);
+
+            rs = pst.executeQuery();
+
+            if(rs.next() == false) {
+                namaLabel.setText("");
+                NIMLabel.setText("");
+                NIMLabel.requestFocus();
+            }
+
+            else{
+                namaLabel.setText(rs.getString("nama"));
+                NIMLabel.setText(rs.getString("nim"));
+            }
+
         }
-        NIMLabel.setText(InputNIM);
+        catch(ClassNotFoundException ex){
+
+        }
+        catch (SQLException ex){
+
+        }
     }
 
     @FXML
@@ -59,6 +83,10 @@ public class MenuStudentController {
 
     @FXML
     public TableColumn<PesananMahasiswa, String> kolomStatus;
+    @FXML
+    public TableColumn<PesananMahasiswa, String> kolomSelect;
+    int studentId;
+
     ObservableList<String> pilihKelasList = FXCollections.observableArrayList("G01", "101", "202");
 
     private Stage stage;
@@ -80,6 +108,10 @@ public class MenuStudentController {
         query = "INSERT INTO `tablebooking`(`NIM`, `kelas`, `tanggal`, `mulai`, `selesai`, `status`) VALUES (?,?,?,?,?,?)";
     }
 
+    private void getQueryBatalkan(){
+        query = "DELETE FROM `tablebooking` WHERE id = ?";
+    }
+
     public void insert() {
 
         try {
@@ -99,7 +131,7 @@ public class MenuStudentController {
     }
 
 
-    public void initialize() throws ClassNotFoundException {
+    public void initialize(){
         loadData();
         pilihKelasBox.setItems(pilihKelasList);
     }
@@ -160,6 +192,7 @@ public class MenuStudentController {
         kolomMulai.setCellValueFactory(new PropertyValueFactory<>("mulai"));
         kolomSelesai.setCellValueFactory(new PropertyValueFactory<>("selesai"));
         kolomStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        kolomSelect.setCellValueFactory(new PropertyValueFactory<>("pilihBaris"));
     }
 
     public void buttonPesanKelas (ActionEvent event) throws IOException{
@@ -180,6 +213,98 @@ public class MenuStudentController {
         }
         refreshData();
     }
+
+    private String studentNIM;
+    private String studentKelas;
+    private String studentTanggal;
+    private String studentMulai;
+    private String studentSelesai;
+    private String studentStatus;
+
+    void setTextField(int id, String NIM, String kelas, String tanggal, String mulai, String selesai, String status) {
+        studentId = id;
+        studentNIM = NIM;
+        studentKelas = kelas;
+        studentTanggal = tanggal ;
+        studentMulai = mulai;
+        studentSelesai = selesai;
+        studentStatus = status;
+    }
+
+//    @FXML
+//    private void buttonBatalkan(ActionEvent event){
+//        connection = DbConnect.getConnect();
+//
+//        ObservableList<PesananMahasiswa> dataListHapus = FXCollections.observableArrayList();
+//
+//        for(PesananMahasiswa bean : pesananMahasiswa){
+//            if(bean.getPilihBaris().isSelected()){
+//                dataListHapus.add(bean);
+//                setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
+//                getQueryBatalkan();
+//                insert();
+//            }
+//        }
+//        refreshData();
+//    }
+
+
+
+
+//    @FXML
+//    private void buttonBatalkan (ActionEvent event) {
+//        Connection conn;
+//        PreparedStatement pst;
+//        ResultSet rs;
+//
+//        conn = DbConnect.getConnect();
+//        String sql = "DELETE FROM `tablebooking` WHERE `id` = ?";
+//
+//        try {
+//            pst = conn.prepareStatement(sql);
+//            pst.setString(1, kolomSelect.getText());
+//            pst.execute();
+//            JOptionPane.showMessageDialog(null, "Dibatalkan");
+//            refreshData();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
+
+    void setTextField2(int id, String NIM, String kelas, String tanggal, String mulai, String selesai, String status) {
+        studentId = id;
+        studentNIM = NIM;
+        studentKelas = kelas;
+        studentTanggal = tanggal ;
+        studentMulai = mulai;
+        studentSelesai = selesai;
+        studentStatus = status;
+    }
+    @FXML
+    private void buttonBatalkan(ActionEvent event) {
+        try {
+            ObservableList<PesananMahasiswa> dataListHapus = FXCollections.observableArrayList();
+
+            for (PesananMahasiswa hapus : pesananMahasiswa) {
+                if (hapus.getPilihBaris().isSelected()) {
+                    dataListHapus.add(hapus);
+                    setTextField2(hapus.getId(), hapus.getNIM(), hapus.getKelas(), hapus.getTanggal(), hapus.getMulai(), hapus.getSelesai(), hapus.getStatus());
+                    query = "DELETE FROM `tablebooking` WHERE id  ="+hapus.getId();
+                    connection = DbConnect.getConnect();
+                    preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.execute();
+                }
+            }
+            refreshData();
+
+        } catch (Exception ex) {
+            Logger.getLogger(MenuStudentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //
+////        int selectedID = tableView.getSelectionModel().getSelectedIndex();
+////        tableView.getItems().remove(selectedID);
+//    }
 
     public void switchToLogOutStudent(ActionEvent event) throws IOException{
         Alert alert = new Alert(AlertType.CONFIRMATION);
