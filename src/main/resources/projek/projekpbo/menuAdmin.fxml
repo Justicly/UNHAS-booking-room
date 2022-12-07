@@ -21,7 +21,7 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Label layoutX="118.0" layoutY="53.0" text="Admin">
+      <Label layoutX="118.0" layoutY="56.0" text="Admin">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
