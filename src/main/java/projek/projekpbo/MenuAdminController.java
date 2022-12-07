@@ -136,9 +136,9 @@ public class MenuAdminController {
 
     public void switchToLogOutAdmin(ActionEvent event) throws IOException{
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Are You Sure to Log Out?");
+        alert.setTitle("Keluar");
+        alert.setHeaderText(null);
+        alert.setContentText("Anda yakin ingin keluar?");
 
         if (alert.showAndWait().get() == ButtonType.OK){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));
@@ -182,6 +182,12 @@ public class MenuAdminController {
                 dataListTerima.add(bean);
                 setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
                 getQueryTerima();
+                
+                Alert alert1 = new Alert(AlertType.INFORMATION);
+                alert1.setHeaderText(null);
+                alert1.setContentText("Permintaan pemesanan kelas berhasil diterima!");
+                alert1.showAndWait();
+                
                 insert();
             }
         }
@@ -201,6 +207,12 @@ public class MenuAdminController {
                 dataListTolak.add(bean);
                 setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
                 getQueryTolak();
+                
+                Alert alert1 = new Alert(AlertType.INFORMATION);
+                alert1.setHeaderText(null);
+                alert1.setContentText("Permintaan pemesanan kelas berhasil ditolak!");
+                alert1.showAndWait();
+                
                 insert();
             }
 
