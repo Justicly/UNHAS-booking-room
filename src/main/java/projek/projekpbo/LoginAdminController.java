@@ -10,36 +10,75 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginAdminController {
     @FXML
-    private TextField Pass;
+    private TextField fieldUname;
+    @FXML
+    private TextField fieldPass;
 
+    @FXML
+    private Label warningLabelUsername;
+    @FXML
+    private Label warningLabelPass;
     @FXML
     private Label warningLabel;
     private Stage stage;
     private Scene scene;
 
+    Connection con;
+    PreparedStatement pst;
+
+    ResultSet rs;
 
     public void switchToMenuAdmin(ActionEvent event) throws IOException{
-        String Password = "123";
-        String inputKosong = "";
-        String Input = Pass.getText();
+        warningLabelUsername.setText(null);
+        warningLabelPass.setText(null);
+        warningLabel.setText(null);
 
-        if (Password.equals(Input)) {
-            FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("menuAdmin.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(fxmlLoader.load());
-            MenuAdminController menuStudent = fxmlLoader.getController();
-            menuStudent.refreshData();
-            stage.setScene(scene);
-            stage.show();
+        String inputKosong = "";
+
+        String InputUsername = fieldUname.getText();
+        String InputPass = fieldPass.getText();
+
+        if(inputKosong.equals(InputUsername) && inputKosong.equals(InputPass)){
+            warningLabelUsername.setText("Masukkan Username dengan benar");
+            warningLabelPass.setText("Masukkan Password dengan Benar");
         }
-        else if (inputKosong.equals(Input)){
-            warningLabel.setText("Masukkan Password dengan Benar");
-        }
-        else{
-            warningLabel.setText("Password salah");
+
+        else {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost/dbbook", "root", "");
+                pst = con.prepareStatement("select * from admin where username=? and pass=?");
+
+                pst.setString(1, InputUsername);
+                pst.setString(2, InputPass);
+
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("menuAdmin.fxml"));
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(fxmlLoader.load());
+                    MenuAdminController menuAdmin = fxmlLoader.getController();
+                    menuAdmin.refreshData();
+                    stage.setScene(scene);
+                    stage.show();
+                } else {
+                    warningLabel.setText("Username atau Password yang Anda Masukkan Salah!");
+                    fieldUname.setText("");
+                    fieldPass.setText("");
+                    fieldUname.requestFocus();
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LoginAdminController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginAdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
