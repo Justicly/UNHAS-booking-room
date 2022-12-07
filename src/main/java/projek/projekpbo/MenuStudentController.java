@@ -87,7 +87,7 @@ public class MenuStudentController {
     public TableColumn<PesananMahasiswa, String> kolomSelect;
     int studentId;
 
-    ObservableList<String> pilihKelasList = FXCollections.observableArrayList("G01", "101", "202");
+    ObservableList<String> pilihKelasList = FXCollections.observableArrayList("G10 CR50", "123 CR50" ,"203 CR100", "208 CR50", "318 CR100");
 
     private Stage stage;
     @FXML
