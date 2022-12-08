@@ -2,6 +2,7 @@ package projek.projekpbo;
 
 import javafx.scene.control.CheckBox;
 
+//Semua setter dan getter yang digunakan pada program ada pada class ini
 public class PesananMahasiswa {
 
     private int id;

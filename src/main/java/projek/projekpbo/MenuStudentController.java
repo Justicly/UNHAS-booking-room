@@ -1,5 +1,6 @@
 package projek.projekpbo;
 
+//import tools yang dibutuhkan
 import helpers.DbConnect;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +16,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-import javax.swing.*;
 import java.sql.*;
 
 import java.io.IOException;
@@ -31,6 +31,7 @@ public class MenuStudentController {
     ResultSet resultSet = null ;
     String Status = "Menunggu";
 
+    //Method menampilkan nama berdasarkan NIM dari database ke scene Menu Student
     public void displayName(String InputNIM, String InputPass){
         Connection con;
         PreparedStatement pst;
@@ -65,6 +66,8 @@ public class MenuStudentController {
         }
     }
 
+
+    //Memanggil FXML yang telah dibuat di Scene Builder
     @FXML
     private TableView<PesananMahasiswa> tableView;
 
@@ -87,6 +90,8 @@ public class MenuStudentController {
     public TableColumn<PesananMahasiswa, String> kolomSelect;
     int studentId;
 
+
+    //List nama kelas dan kapasitas kelas untuk drop down pilih kelas
     ObservableList<String> pilihKelasList = FXCollections.observableArrayList("G10 CR50", "123 CR50" ,"203 CR100", "208 CR50", "318 CR100");
 
     private Stage stage;
@@ -104,14 +109,12 @@ public class MenuStudentController {
     @FXML
     Label NIMLabel;
 
+    //Query untuk memasukkan data ke database
     private void getQuery() {
         query = "INSERT INTO `tablebooking`(`NIM`, `kelas`, `tanggal`, `mulai`, `selesai`, `status`) VALUES (?,?,?,?,?,?)";
     }
 
-    private void getQueryBatalkan(){
-        query = "DELETE FROM `tablebooking` WHERE id = ?";
-    }
-
+    //Untuk memasukkan inputan user ke database
     public void insert() {
 
         try {
@@ -130,12 +133,13 @@ public class MenuStudentController {
 
     }
 
-
+    //Inisialisasi untuk load data dan drop down pilih kelas
     public void initialize(){
         loadData();
         pilihKelasBox.setItems(pilihKelasList);
     }
 
+    //Refresh data untuk memunculkan data terbaru
     public void refreshData(){
         try {
             pesananMahasiswa.clear();
@@ -160,13 +164,11 @@ public class MenuStudentController {
         }
     }
 
+    //Pengecekan apakah suatu kelas telah dipesan pada waktu tertentu berdasarkan input user
     public void checkData(){
         try {
             pesananMahasiswa.clear();
             query = "SELECT * FROM `tablebooking` WHERE ((kelas ='"+pilihKelasBox.getValue()+"') AND (tanggal= '"+tanggalKelas.getValue()+"') AND ((mulai >= '"+fieldMulaiKelas.getText()+":00' AND mulai <= '"+fieldSelesaiKelas.getText()+":00') OR (selesai >= '"+fieldMulaiKelas.getText()+":00' AND selesai <= '"+fieldSelesaiKelas.getText()+":00')))";
-            //query = "SELECT * FROM `tablebooking` WHERE kelas ='"+pilihKelasBox.getValue()+"' AND tanggal= '"+tanggalKelas.getValue()+"' AND mulai>='"+fieldMulaiKelas.getText()+":00' AND (selesai <= '"+fieldSelesaiKelas.getText()+":00' OR selesai >= '"+fieldSelesaiKelas.getText()+":00')";
-            //query = "SELECT * FROM `tablebooking` WHERE (kelas ='"+pilihKelasBox.getValue()+"') AND (tanggal= '"+tanggalKelas.getValue()+"') AND (mulai>='"+fieldMulaiKelas.getText()+":00' AND selesai <= '"+fieldSelesaiKelas.getText()+":00')";
-            // A>=12:00 AND (B<=13:00 OR B>=13:00)
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
@@ -183,6 +185,8 @@ public class MenuStudentController {
             Logger.getLogger(MenuStudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    //Menampilkan data pada tabel yang ada di tampilan (GUI)
     public void loadData(){
         connection = DbConnect.getConnect();
         refreshData();
@@ -195,6 +199,8 @@ public class MenuStudentController {
         kolomSelect.setCellValueFactory(new PropertyValueFactory<>("pilihBaris"));
     }
 
+
+    //Tombol untuk memesan kelas
     public void buttonPesanKelas (ActionEvent event) throws IOException{
         connection = DbConnect.getConnect();
         String tanggal = String.valueOf(tanggalKelas.getValue());
@@ -226,56 +232,9 @@ public class MenuStudentController {
     private String studentSelesai;
     private String studentStatus;
 
-    void setTextField(int id, String NIM, String kelas, String tanggal, String mulai, String selesai, String status) {
-        studentId = id;
-        studentNIM = NIM;
-        studentKelas = kelas;
-        studentTanggal = tanggal ;
-        studentMulai = mulai;
-        studentSelesai = selesai;
-        studentStatus = status;
-    }
-
-//    @FXML
-//    private void buttonBatalkan(ActionEvent event){
-//        connection = DbConnect.getConnect();
-//
-//        ObservableList<PesananMahasiswa> dataListHapus = FXCollections.observableArrayList();
-//
-//        for(PesananMahasiswa bean : pesananMahasiswa){
-//            if(bean.getPilihBaris().isSelected()){
-//                dataListHapus.add(bean);
-//                setTextField(bean.getId(), bean.getNIM(), bean.getKelas(), bean.getTanggal(), bean.getMulai(), bean.getSelesai(), bean.getStatus());
-//                getQueryBatalkan();
-//                insert();
-//            }
-//        }
-//        refreshData();
-//    }
 
 
-
-
-//    @FXML
-//    private void buttonBatalkan (ActionEvent event) {
-//        Connection conn;
-//        PreparedStatement pst;
-//        ResultSet rs;
-//
-//        conn = DbConnect.getConnect();
-//        String sql = "DELETE FROM `tablebooking` WHERE `id` = ?";
-//
-//        try {
-//            pst = conn.prepareStatement(sql);
-//            pst.setString(1, kolomSelect.getText());
-//            pst.execute();
-//            JOptionPane.showMessageDialog(null, "Dibatalkan");
-//            refreshData();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-//    }
-
+    //Pembuatan parameter agar fungsi checkbox dapat mendeteksi data hanya pada keadaan checkbox di check atau dicentang
     void setTextField2(int id, String NIM, String kelas, String tanggal, String mulai, String selesai, String status) {
         studentId = id;
         studentNIM = NIM;
@@ -285,6 +244,8 @@ public class MenuStudentController {
         studentSelesai = selesai;
         studentStatus = status;
     }
+
+    //Tombol untuk membatalkan pesanan
     @FXML
     public void buttonBatalkan(ActionEvent event) {
         try {
@@ -311,11 +272,8 @@ public class MenuStudentController {
             Logger.getLogger(MenuStudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    //
-////        int selectedID = tableView.getSelectionModel().getSelectedIndex();
-////        tableView.getItems().remove(selectedID);
-//    }
 
+    //Tombol untuk log out dari menu student
     public void switchToLogOutStudent(ActionEvent event) throws IOException{
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Keluar");

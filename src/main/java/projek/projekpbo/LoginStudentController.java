@@ -1,5 +1,6 @@
 package projek.projekpbo;
 
+//import tools yang dibutuhkan
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 
 public class LoginStudentController {
 
+    //memanggil FXML yang telah dibuat di scene builder
     @FXML
     private Label warningLabelNIM;
 
@@ -36,6 +38,7 @@ public class LoginStudentController {
 
     ResultSet rs;
 
+    //Method tombol untuk pindah ke menu student
     public void switchToMenuStudent(ActionEvent event) throws IOException {
         warningLabelNIMPassStud.setText(null);
         warningLabelNIM.setText(null);
@@ -53,6 +56,7 @@ public class LoginStudentController {
 
         else {
             try {
+                //connect ke database
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost/dbbook", "root", "");
                 pst = con.prepareStatement("select * from users where nim=? and pass=?");
@@ -85,6 +89,7 @@ public class LoginStudentController {
         }
     }
 
+    //Method untuk tombol pindah ke scene main menu
     public void switchBackMainMenu(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

@@ -7,8 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//Class untuk start program
 public class StartProgram extends Application {
 
+    //Ketika program pertama kali dijalankan akan menuju ke scene main menu
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));

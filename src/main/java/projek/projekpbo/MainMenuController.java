@@ -1,5 +1,6 @@
 package projek.projekpbo;
 
+//import tools yang dibutuhkan
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,6 +13,7 @@ public class MainMenuController {
     private Stage stage;
     private Scene scene;
 
+    //Tombol untuk menuju menu login admin
     public void switchTologinAdmin(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("loginAdmin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -20,6 +22,7 @@ public class MainMenuController {
         stage.show();
     }
 
+    //Tombol untuk menuju menu login Student
     public void switchToDataStudent(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("dataStudent.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

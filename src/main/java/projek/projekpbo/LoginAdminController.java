@@ -1,5 +1,6 @@
 package projek.projekpbo;
 
+//import semua tools yang dibutuhkan
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginAdminController {
+    ///Memanggil FXML yang telah dibuat di SceneBuilder
     @FXML
     private TextField fieldUname;
     @FXML
@@ -34,6 +36,7 @@ public class LoginAdminController {
 
     ResultSet rs;
 
+    //Method untuk tombol pindah ke scene Menu Admin
     public void switchToMenuAdmin(ActionEvent event) throws IOException{
         warningLabelUsername.setText(null);
         warningLabelPass.setText(null);
@@ -51,6 +54,7 @@ public class LoginAdminController {
 
         else {
             try {
+                //connect ke database
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost/dbbook", "root", "");
                 pst = con.prepareStatement("select * from admin where username=? and pass=?");
@@ -82,6 +86,7 @@ public class LoginAdminController {
         }
     }
 
+    //Method untuk tombol pindah ke scene Main menu
     public void switchBackMainMenu(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

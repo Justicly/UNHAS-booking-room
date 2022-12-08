@@ -1,5 +1,6 @@
 package projek.projekpbo;
 
+//import tools yang dibutuhkan
 import helpers.DbConnect;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +30,7 @@ public class MenuAdminController {
     ResultSet resultSet = null ;
 
 
+    //Memanggil FXML yang telah dibuat dari Scene Builder
     @FXML
     private TableView<PesananMahasiswa> tableView2;
 
@@ -54,11 +56,12 @@ public class MenuAdminController {
     int studentId;
 
     public void initialize(){
+
         loadData();
     }
 
+    //Memasukkan data ke database
     public void insert() {
-
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, studentNIM);
@@ -71,11 +74,12 @@ public class MenuAdminController {
         } catch (SQLException ex) {
             Logger.getLogger(MenuStudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
     String StatusTerima = "Diterima";
     String StatusTolak = "Ditolak";
 
+    //Perubahan status menjadi "Diterima"
     public void getQueryTerima() {
         query = "UPDATE `tablebooking` SET "
                 + "`NIM`=?,"
@@ -86,6 +90,7 @@ public class MenuAdminController {
                 + "`status`='"+StatusTerima+"' WHERE id = '" + studentId +"'";
     }
 
+    //Perubahan status menjadi "Ditolak"
     public void getQueryTolak() {
         query = "UPDATE `tablebooking` SET "
                 + "`NIM`=?,"
@@ -96,6 +101,7 @@ public class MenuAdminController {
                 + "`status`='"+StatusTolak+"' WHERE id = '" + studentId +"'";
     }
 
+    //Refresh data untuk menampilkan data terbaru ketika terjadi suatu perubahan pada data
     public void refreshData(){
         try {
             pesananMahasiswa.clear();
@@ -119,6 +125,8 @@ public class MenuAdminController {
             Logger.getLogger(MenuStudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    //Menampilkan data pada tabel yang ada di GUI
     public void loadData(){
         connection = DbConnect.getConnect();
         refreshData();
@@ -132,8 +140,7 @@ public class MenuAdminController {
         kolomSelect2.setCellValueFactory(new PropertyValueFactory<>("pilihBaris"));
     }
 
-    // add your data here from any source
-
+    //Tombol log out dari menu admin
     public void switchToLogOutAdmin(ActionEvent event) throws IOException{
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Keluar");
@@ -159,6 +166,7 @@ public class MenuAdminController {
     private String studentSelesai;
     private String studentStatus;
 
+    //Pembuatan parameter agar fungsi checkbox dapat mendeteksi data hanya pada keadaan checkbox di check atau dicentang
     void setTextField(int id, String NIM, String kelas, String tanggal, String mulai, String selesai, String status) {
         studentId = id;
         studentNIM = NIM;
@@ -169,6 +177,7 @@ public class MenuAdminController {
         studentStatus = status;
     }
 
+    //Tombol untuk admin dapat menerima kelas
     @FXML
     private void terimaKelas(ActionEvent event) {
         connection = DbConnect.getConnect();
@@ -194,6 +203,7 @@ public class MenuAdminController {
         refreshData();
     }
 
+    //Tombol untuk admin dapat menolak kelas
     @FXML
     private void tolakKelas(ActionEvent event) {
         connection = DbConnect.getConnect();
