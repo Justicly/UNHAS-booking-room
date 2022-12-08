@@ -87,7 +87,7 @@ public class MenuStudentController {
     public TableColumn<PesananMahasiswa, String> kolomSelect;
     int studentId;
 
-    ObservableList<String> pilihKelasList = FXCollections.observableArrayList("G01", "101", "202");
+    ObservableList<String> pilihKelasList = FXCollections.observableArrayList("G10 CR50", "123 CR50" ,"203 CR100", "208 CR50", "318 CR100");
 
     private Stage stage;
     @FXML
@@ -205,10 +205,15 @@ public class MenuStudentController {
         if (tanggal.isEmpty() || mulai.isEmpty() || selesai.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setContentText("Please Fill All DATA");
+            alert.setContentText("Masukkan semua data!");
             alert.showAndWait();
 
         } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Permintaan pemesanan telah dikirim. Silakan tunggu konfirmasi!");
+            alert.showAndWait();
+            
             checkData();
         }
         refreshData();
@@ -281,7 +286,7 @@ public class MenuStudentController {
         studentStatus = status;
     }
     @FXML
-    private void buttonBatalkan(ActionEvent event) {
+    public void buttonBatalkan(ActionEvent event) {
         try {
             ObservableList<PesananMahasiswa> dataListHapus = FXCollections.observableArrayList();
 
@@ -293,6 +298,11 @@ public class MenuStudentController {
                     connection = DbConnect.getConnect();
                     preparedStatement = connection.prepareStatement(query);
                     preparedStatement.execute();
+                    
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Permintaan pemesanan kelas telah dibatalkan");
+                    alert.showAndWait();
                 }
             }
             refreshData();
@@ -308,9 +318,9 @@ public class MenuStudentController {
 
     public void switchToLogOutStudent(ActionEvent event) throws IOException{
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Are You Sure to Log Out?");
+        alert.setTitle("Keluar");
+        alert.setHeaderText(null);
+        alert.setContentText("Anda yakin ingin keluar?");
 
         if (alert.showAndWait().get() == ButtonType.OK){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));

@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginStudentController {
 
@@ -28,36 +31,57 @@ public class LoginStudentController {
     private Stage stage;
     private Scene scene;
 
+    Connection con;
+    PreparedStatement pst;
+
+    ResultSet rs;
+
     public void switchToMenuStudent(ActionEvent event) throws IOException {
         warningLabelNIMPassStud.setText(null);
         warningLabelNIM.setText(null);
         warningKesalahan.setText(null);
 
-        String Username = "D131211000";
-        String Password = "123456";
-
-        String Username2 = "D121211000";
-        String Password2 = "654321";
         String inputKosong = "";
 
         String InputNIM = fieldNIM.getText();
         String InputPass = fieldPass.getText();
 
-        if (Password.equals(InputPass) && Username.equals(InputNIM) || Password2.equals(InputPass) && Username2.equals(InputNIM)) {
-            FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("menuStudent.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(fxmlLoader.load());
-            MenuStudentController menuStudent = fxmlLoader.getController();
-            menuStudent.displayName(InputNIM, InputPass);
-            menuStudent.refreshData();
-            stage.setScene(scene);
-            stage.show();
-        } else if (inputKosong.equals(InputPass) && inputKosong.equals(InputNIM)) {
+        if(inputKosong.equals(InputNIM) && inputKosong.equals(InputPass)){
             warningLabelNIMPassStud.setText("Masukkan Password dengan Benar");
             warningLabelNIM.setText("Masukkan Username dengan benar");
+        }
 
-        } else {
-            warningKesalahan.setText("NIM atau Password yang Anda Masukkan Salah");
+        else {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost/dbbook", "root", "");
+                pst = con.prepareStatement("select * from users where nim=? and pass=?");
+
+                pst.setString(1, InputNIM);
+                pst.setString(2, InputPass);
+
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("menuStudent.fxml"));
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(fxmlLoader.load());
+                    MenuStudentController menuStudent = fxmlLoader.getController();
+                    menuStudent.displayName(InputNIM, InputPass);
+                    menuStudent.refreshData();
+                    stage.setScene(scene);
+                    stage.show();
+                } else {
+                    warningKesalahan.setText("NIM atau Password yang Anda Masukkan Salah");
+                    fieldNIM.setText("");
+                    fieldPass.setText("");
+                    fieldNIM.requestFocus();
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LoginStudentController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginStudentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
